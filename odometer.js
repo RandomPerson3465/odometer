@@ -596,15 +596,15 @@
                 
                 if (this.options.animationDirection == 'down') down = !down;
 
-                if (down) {
-                    addClass(this.ribbons[i], 'odometer-animating-down')
-                    frames = frames.reverse();
-                } else {
-                    addClass(this.ribbons[i], 'odometer-animating-up')
+                if ((this.options.animation !== 'minimal' && this.options.animation !== 'byDigit') || _ref[i][0] !== _ref[i][_ref[i].length-1]) {
+                    if (down) {
+                        addClass(this.ribbons[i], 'odometer-animating-down')
+                        frames = frames.reverse();
+                    } else {
+                        addClass(this.ribbons[i], 'odometer-animating-up')
+                    
+                    }
                 }
-
-                console.log(frames)
-                console.log(down)
 
                 down = false;
 
