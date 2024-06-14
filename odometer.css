@@ -53,14 +53,7 @@
   .odometer-value.odometer-last-value {
   position: absolute;
 }
-.odometer.odometer-auto-theme .odometer-ribbon-inner.odometer-animating-up,
-.odometer.odometer-theme-minimal .odometer-ribbon-inner.odometer-animating-up {
-  -webkit-transition: -webkit-transform 2s;
-  -moz-transition: -moz-transform 2s;
-  -ms-transition: -ms-transform 2s;
-  -o-transition: -o-transform 2s;
-  transition: transform 2s;
-}
+
 .odometer.odometer-auto-theme.odometer-animating
   .odometer-ribbon-inner.odometer-animating-up,
 .odometer.odometer-theme-minimal.odometer-animating
@@ -84,11 +77,6 @@
   .odometer-ribbon-inner.odometer-animating-down,
 .odometer.odometer-theme-minimal.odometer-animating
   .odometer-ribbon-inner.odometer-animating-down {
-  -webkit-transition: -webkit-transform 2s;
-  -moz-transition: -moz-transform 2s;
-  -ms-transition: -ms-transform 2s;
-  -o-transition: -o-transform 2s;
-  transition: transform 2s;
   -webkit-transform: translateY(0);
   -moz-transform: translateY(0);
   -ms-transform: translateY(0);

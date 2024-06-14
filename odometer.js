@@ -144,6 +144,7 @@
             if ((_base = this.options).duration == null) {
                 _base.duration = DURATION;
             }
+
             this.MAX_VALUES = ((this.options.duration / MS_PER_FRAME) / FRAMES_PER_VALUE) | 0;
             this.resetFormat();
             this.value = this.cleanValue((_ref1 = this.options.value) != null ? _ref1 : '');
@@ -357,6 +358,7 @@
             removeClass(this.el, 'odometer-counting-up odometer-counting-down odometer-animating');
             for (i = 0; i < this.ribbons.length; i++) {
                 removeClass(this.ribbons[i], 'odometer-animating-up odometer-animating-down')
+                this.ribbons[i].removeAttribute('style')
             }
             if (this.diff > 0) {
                 addClass(this.el, 'odometer-counting-up');
@@ -597,6 +599,8 @@
                 if (this.options.animationDirection == 'down') down = !down;
 
                 if ((this.options.animation !== 'minimal' && this.options.animation !== 'byDigit') || _ref[i][0] !== _ref[i][_ref[i].length-1]) {
+                    const animationDuration = this.options.duration > 0 ? this.options.duration / 1000 : 2
+                    this.ribbons[i].setAttribute('style', `-webkit-transition: -webkit-transform ${animationDuration}s; -moz-transition: -moz-transform ${animationDuration}s; -ms-transition: -ms-transform ${animationDuration}s; -o-transition: -o-transform ${animationDuration}s; transition: transform ${animationDuration}s;`)
                     if (down) {
                         addClass(this.ribbons[i], 'odometer-animating-down')
                         frames = frames.reverse();
