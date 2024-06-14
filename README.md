@@ -17,7 +17,7 @@ Specify options in `window.odometerOptions`
 
 `directionByDigit` (Boolean) If true, the direction of each digit is determined by whether the digit itself goes up or down instead of being determined by the entire count
 
-`duration` (Number) # of milliseconds the Javascript expects the animation to take (does not affect actual animation)
+`duration` (Number) Duration of the animation in milliseconds
 
 `el` (HTMLElement) HTML Element
 
