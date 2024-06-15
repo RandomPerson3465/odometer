@@ -518,7 +518,7 @@
         };
 
         Odometer.prototype.animateSlide = function (newValue) {
-            var boosted, cur, digitCount, digits, dist, down, end, fractionalCount, frame, frames, i, incr, j, mark, numEl, oldValue, start, _base, _i, _j, _k, _l, _len, _len1, _len2, _m, _ref, _results;
+            var boosted, cur, digitCount, digits, dist, down, end, fractionalCount, frame, frames, i, incr, j, mark, newDigitCount, numEl, oldDigitCount, oldValue, start, _base, _i, _j, _k, _l, _len, _len1, _len2, _m, _ref, _results;
             oldValue = this.value;
             fractionalCount = this.getFractionalDigitCount(oldValue, newValue);
             if (fractionalCount) {
@@ -530,6 +530,8 @@
             }
             this.bindTransitionEnd();
             digitCount = this.getDigitCount(oldValue, newValue);
+            newDigitCount = this.getDigitCount(newValue) || 1;
+            oldDigitCount = this.getDigitCount(oldValue) || 1;
             digits = [];
             boosted = 0;
             for (i = _i = 0; 0 <= digitCount ? _i < digitCount : _i > digitCount; i = 0 <= digitCount ? ++_i : --_i) {
@@ -559,10 +561,15 @@
                     frame = frames[i];
                     frames[i] = Math.abs(frame % 10);
                 }
+
                 digits.push(frames);
             }
+
             this.resetDigits();
             _ref = digits.reverse();
+            
+            
+
             for (i = _l = 0, _len1 = _ref.length; _l < _len1; i = ++_l) {
 
                 if (!this.digits[i]) {
@@ -603,8 +610,24 @@
                         frames = _ref[i];
                         if (this.diff < 0) down = true
                 }
+
+                if (this.options.removeLeadingZeros) {
+                    if (newDigitCount > oldDigitCount && i >= oldDigitCount) {
+                        for (j = 0; j < frames.length; j++) {
+                            if (frames[j] === 0) frames[j] = '\u200b';
+                            else break;
+                        }
+                    }
+        
+                    if (oldDigitCount > newDigitCount && i >= newDigitCount) {
+                        for (j = frames.length - 1; j >= 0; j--) {
+                            if (frames[j] === 0) frames[j] = '\u200b';
+                            else break;
+                        }
+                    }
+                }
                 
-                if (this.options.animationDirection == 'down') down = !down;
+                if (this.options.reverseAnimation) down = !down;
 
                 if ((this.options.animation !== 'minimal' && this.options.animation !== 'byDigit') || _ref[i][0] !== _ref[i][_ref[i].length-1]) {
                     const animationDuration = this.options.duration > 0 ? this.options.duration / 1000 : 2
