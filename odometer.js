@@ -601,8 +601,12 @@
                                 frames = [...Array(10).keys()].slice(a,b+1)
                             }
                         } else {
-                            if (this.diff < 0) down = true
-                            frames = [...Array(19).keys()].map(x=>x%10).slice(a, (a > b) ? b + 11 : b + 1);
+                            if (this.diff < 0) {
+                                down = true
+                                frames = [...Array(19).keys()].map(x=>x%10).reverse().slice((a >= b) ? 18 - a : 8 - a, 19 - b)
+                            } else {
+                                frames = [...Array(19).keys()].map(x=>x%10).slice(a, (a > b) ? b + 11 : b + 1);
+                            }
                         }
                         break;
                     default:
