@@ -604,7 +604,6 @@
                             if (this.diff < 0) down = true
                             frames = [...Array(19).keys()].map(x=>x%10).slice(a, (a > b) ? b + 11 : b + 1);
                         }
-                        
                         break;
                     default:
                         frames = _ref[i];
@@ -629,7 +628,12 @@
                 
                 if (this.options.reverseAnimation) down = !down;
 
-                if ((this.options.animation !== 'minimal' && this.options.animation !== 'byDigit') || _ref[i][0] !== _ref[i][_ref[i].length-1]) {
+                if ((this.options.animation === 'minimal' || this.options.animation === 'byDigit') && oldValue == -newValue) {
+                    frames = [frames[0]];
+                }
+                // Fixes animation bug when updating from X to -X
+
+                if ((this.options.animation !== 'minimal' && this.options.animation !== 'byDigit') || _ref[i][0] !== _ref[i][_ref[i].length-1] || oldValue == -newValue ) { // Fixes animation bug when updating from X to -X
                     const animationDuration = this.options.duration > 0 ? this.options.duration / 1000 : 2
                     this.ribbons[i].setAttribute('style', `-webkit-transition: -webkit-transform ${animationDuration}s; -moz-transition: -moz-transform ${animationDuration}s; -ms-transition: -ms-transform ${animationDuration}s; -o-transition: -o-transform ${animationDuration}s; transition: transform ${animationDuration}s;`)
                     if (down) {
