@@ -17,6 +17,8 @@ Specify options in `window.odometerOptions`
 
 `directionByDigit` (Boolean) If true, the direction of each digit is determined by whether the digit itself goes up or down instead of being determined by the entire count
 
+`downColor` (String) The color of the counter when it is counting down.
+
 `duration` (Number) Duration of the animation in milliseconds
 
 `el` (HTMLElement) HTML Element
@@ -30,3 +32,5 @@ Specify options in `window.odometerOptions`
 `theme` (String) odometer theme
 
 `value` (Number) odometer value
+
+`upColor` (String) The color of the counter when it is counting up.

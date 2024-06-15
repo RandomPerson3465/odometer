@@ -284,6 +284,7 @@
             if (value == null) {
                 value = this.value;
             }
+            this.el.removeAttribute('style')
             this.stopWatchingMutations();
             this.resetFormat();
             this.inside.innerHTML = '';
@@ -360,10 +361,17 @@
                 removeClass(this.ribbons[i], 'odometer-animating-up odometer-animating-down')
                 this.ribbons[i].removeAttribute('style')
             }
+            
             if (this.diff > 0) {
                 addClass(this.el, 'odometer-counting-up');
+                if (this.options.upColor) {
+                    this.el.setAttribute('style', `color: ${this.options.upColor}`)
+                }
             } else {
                 addClass(this.el, 'odometer-counting-down');
+                if (this.options.downColor) {
+                    this.el.setAttribute('style', `color: ${this.options.downColor}`)
+                }
             }
             this.stopWatchingMutations();
             this.animate(newValue);
