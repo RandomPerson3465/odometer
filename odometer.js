@@ -470,7 +470,7 @@
                 if (delta > COUNT_MS_PER_FRAME) {
                     last = now();
                     fraction = delta / _this.options.duration;
-                    dist = this.diff * fraction;
+                    dist = _this.diff * fraction;
                     cur += dist;
                     _this.render(Math.round(cur));
                 }
