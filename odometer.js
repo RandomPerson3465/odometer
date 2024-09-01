@@ -355,7 +355,6 @@
         if (!(diff = newValue - this.value)) {
           return;
         }
-        this.el.removeAttribute('style')
         removeClass(this.el, 'odometer-counting-up odometer-counting-down odometer-animating');
         if (diff > 0) {
           addClass(this.el, 'odometer-counting-up');
